@@ -1,0 +1,4 @@
+- src: git@git.itigo.tech:itigoroles/provisioning/docker-setup.git
+  scm: git
+  name: docker-setup
+  version: update-to-docker-ce

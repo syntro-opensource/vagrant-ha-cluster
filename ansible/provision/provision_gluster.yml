@@ -1,0 +1,14 @@
+######################################################
+# FILENAME: provision.yml
+#
+# DESCRIPTION:
+#   provisions a vagrant VM with Docker
+#
+# AUTHORS:
+#   - Matthias Leutenegger
+######################################################
+---
+- hosts: gluster
+
+  roles:
+    - role: gluster-cluster

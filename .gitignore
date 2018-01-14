@@ -1,0 +1,5 @@
+.DS_Store
+/ansible/provision/roles/*
+.vagrant/
+*.retry
+*.vdi
