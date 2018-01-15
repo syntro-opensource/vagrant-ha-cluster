@@ -40,7 +40,7 @@ Vagrant.configure("2") do |config|
     rancher_master.ssh.forward_agent = true
     rancher_master.vm.provision "file", source: "files/key/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
     rancher_master.vm.provision "shell" do |s|
-      s.path = "scripts/provision.sh"
+      s.path = "scripts/provision_rancher.sh"
     end
     rancher_master.vm.provider "virtualbox" do |vb|
       vb.name = "syntro-rancher-master"
@@ -61,7 +61,7 @@ Vagrant.configure("2") do |config|
     rancher_slave1.ssh.forward_agent = true
     rancher_slave1.vm.provision "file", source: "files/key/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
     rancher_slave1.vm.provision "shell" do |s|
-      s.path = "scripts/provision.sh"
+      s.path = "scripts/provision_rancher.sh"
     end
     rancher_slave1.vm.provider "virtualbox" do |vb|
       vb.name = "syntro-rancher-slave1"
@@ -81,7 +81,7 @@ Vagrant.configure("2") do |config|
     gluster1.ssh.forward_agent = true
     gluster1.vm.provision "file", source: "files/key/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
     gluster1.vm.provision "shell" do |s|
-      s.path = "scripts/provision.sh"
+      s.path = "scripts/provision_gluster.sh"
     end
     gluster1.vm.provider "virtualbox" do |vb|
       unless File.exist?(gluster1_brick)
@@ -105,7 +105,7 @@ Vagrant.configure("2") do |config|
     gluster2.ssh.forward_agent = true
     gluster2.vm.provision "file", source: "files/key/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
     gluster2.vm.provision "shell" do |s|
-      s.path = "scripts/provision.sh"
+      s.path = "scripts/provision_gluster.sh"
     end
     gluster2.vm.provider "virtualbox" do |vb|
       unless File.exist?(gluster2_brick)

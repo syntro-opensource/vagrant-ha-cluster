@@ -16,14 +16,17 @@ else
   echo "[INFO] Done" >&1
 fi
 
+echo "[INFO] chmoding private key" >&1
+chmod 600 /home/vagrant/.ssh/id_rsa
+
 echo "[INFO] Installing ansible roles..." >&1
 apt-get -qq install git  -y >/dev/null
 su vagrant -c"ssh-keyscan git.itigo.tech > /home/vagrant/.ssh/known_hosts"
 su vagrant -c"ssh-keyscan github.com >> /home/vagrant/.ssh/known_hosts"
 su vagrant -c"ssh-keyscan gitlab.com >> /home/vagrant/.ssh/known_hosts"
-# su vagrant -c"ansible-galaxy install -fr /home/vagrant/ansible/provision/requirements.yml"
-# echo "[INFO] Done" >&1
-# su vagrant -c"ansible-playbook -i /home/vagrant/ansible/provision/hosts -v /home/vagrant/ansible/provision/provision.yml"
+su vagrant -c"ansible-galaxy install -fr /home/vagrant/ansible/provision/requirements.yml"
+echo "[INFO] Done" >&1
+
 
 echo "[INFO] Adding VM's to known_hosts" >&1
 su vagrant -c"ssh-keyscan 192.168.200.10 >> /home/vagrant/.ssh/known_hosts"

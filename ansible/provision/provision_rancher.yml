@@ -8,7 +8,7 @@
 #   - Matthias Leutenegger
 ######################################################
 ---
-- hosts: vagrant
+- hosts: ranchers
 
   roles:
     - role: docker-setup
