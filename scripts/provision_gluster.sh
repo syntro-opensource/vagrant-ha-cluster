@@ -6,11 +6,11 @@ chown vagrant /home/vagrant/.ssh/authorized_keys
 
 echo "[INFO] mounting brick volume" >&1
 parted /dev/sdb mklabel msdos
-parted /dev/sdb mkpart primary 512 100%
+parted /dev/sdb mkpart primary 1 1GiB
 mkfs.xfs /dev/sdb1
-mkdir -p /data/glusterfs/vagrantvol/brick1
-echo `blkid /dev/sdb1 | awk '{print$2}' | sed -e 's/"//g'` /data/glusterfs/vagrantvol/brick1   xfs   noatime,nobarrier   0   0 >> /etc/fstab
-mount /data/glusterfs/vagrantvol/brick1
+mkdir -p /test/brickvol
+echo `blkid /dev/sdb1 | awk '{print$2}' | sed -e 's/"//g'` /test/brickvol   xfs   noatime,nobarrier   0   0 >> /etc/fstab
+mount /test/brickvol
 
 # if hash ansible-playbook 2>/dev/null; then
 #   echo "[INFO] Ansible is already installed, nothing to do here..." >&1
