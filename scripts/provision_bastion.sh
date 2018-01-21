@@ -33,6 +33,7 @@ su vagrant -c"ssh-keyscan 192.168.200.10 >> /home/vagrant/.ssh/known_hosts"
 su vagrant -c"ssh-keyscan 192.168.200.11 >> /home/vagrant/.ssh/known_hosts"
 su vagrant -c"ssh-keyscan 192.168.200.21 >> /home/vagrant/.ssh/known_hosts"
 su vagrant -c"ssh-keyscan 192.168.200.22 >> /home/vagrant/.ssh/known_hosts"
+su vagrant -c"ssh-keyscan 192.168.200.23 >> /home/vagrant/.ssh/known_hosts"
 # if [ -f /etc/hosts.orig ]; then
 #    cp /etc/hosts /etc/hosts.orig
 # fi

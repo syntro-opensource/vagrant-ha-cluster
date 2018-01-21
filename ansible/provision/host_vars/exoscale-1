@@ -1,0 +1,27 @@
+partition:
+  device: /dev/vda
+  parts:
+    system:
+      start:
+        val: "1"
+        unit: ""
+      end:
+        val: 5.0
+        unit: GiB
+      fs: ext4
+    gluster:
+      start:
+        val: 5.01
+        unit: GiB
+      end:
+        val: 100
+        unit: "%"
+      fs: xfs
+
+
+vol_name: dockerfs
+brick_dir: "/data/{{ vol_name }}"
+
+glustervolume:
+  name: demo-ha
+  brick: "{{ brick_dir }}/ssdbrick/"

@@ -3,6 +3,7 @@
 
 gluster1_brick = './bricks/gluster1_brick.vdi'
 gluster2_brick = './bricks/gluster2_brick.vdi'
+gluster3_brick = './bricks/gluster3_brick.vdi'
 
 
 Vagrant.configure("2") do |config|
@@ -113,6 +114,30 @@ Vagrant.configure("2") do |config|
       end
       vb.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', gluster2_brick]
       vb.name = "syntro-gluster2"
+      vb.memory = "1024"
+      vb.cpus = 1
+    end
+  end
+
+  # ------------------------------------------------------
+  #                 Gluster Server 3
+  # ------------------------------------------------------
+
+  config.vm.define "gluster3" do |gluster3|
+    gluster3.vm.box = "bento/ubuntu-16.04"
+    gluster3.vm.network "private_network", ip: "192.168.200.23"
+    gluster3.vm.hostname = "gluster3.storage.local"
+    gluster3.ssh.forward_agent = true
+    gluster3.vm.provision "file", source: "files/key/id_rsa.pub", destination: "~/.ssh/id_rsa.pub"
+    gluster3.vm.provision "shell" do |s|
+      s.path = "scripts/provision_gluster.sh"
+    end
+    gluster3.vm.provider "virtualbox" do |vb|
+      unless File.exist?(gluster3_brick)
+        vb.customize ['createhd', '--filename', gluster3_brick, '--variant', 'Fixed', '--size', 5 * 1024]
+      end
+      vb.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', gluster3_brick]
+      vb.name = "syntro-gluster3"
       vb.memory = "1024"
       vb.cpus = 1
     end

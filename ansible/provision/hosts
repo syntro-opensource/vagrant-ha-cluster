@@ -5,3 +5,4 @@ slave1.rancher.local  ansible_host=192.168.200.11
 [gluster]
 gluster1.storage.local  ansible_host=192.168.200.21
 gluster2.storage.local  ansible_host=192.168.200.22
+gluster3.storage.local  ansible_host=192.168.200.23
